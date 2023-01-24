@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TAF.Core", "Epam.TAF.Core\Epam.TAF.Core.csproj", "{6977DDCA-D26E-4493-97F3-B9FAD53A7D81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TAF.Utilities", "Epam.TAF.Utilities\Epam.TAF.Utilities.csproj", "{9938BD2C-3F82-4492-86F5-6A3BDA37EC09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6977DDCA-D26E-4493-97F3-B9FAD53A7D81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6977DDCA-D26E-4493-97F3-B9FAD53A7D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6977DDCA-D26E-4493-97F3-B9FAD53A7D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6977DDCA-D26E-4493-97F3-B9FAD53A7D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9938BD2C-3F82-4492-86F5-6A3BDA37EC09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9938BD2C-3F82-4492-86F5-6A3BDA37EC09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9938BD2C-3F82-4492-86F5-6A3BDA37EC09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9938BD2C-3F82-4492-86F5-6A3BDA37EC09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {615CE153-ADD6-4B34-AC3B-2357D7B947E9}
+	EndGlobalSection
+EndGlobal
