@@ -13,7 +13,7 @@ namespace Epam.TAF.Tests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            Logger.InitLogger(TestContext.CurrentContext.Test.Name, Path.Combine(TestContext.CurrentContext.TestDirectory, TestSettings.LogsPath));
+            Logger.InitLogger(TestContext.CurrentContext.Test.Name, Path.Join(TestContext.CurrentContext.TestDirectory, TestSettings.LogsPath));
         }
 
         [SetUp]
@@ -30,7 +30,7 @@ namespace Epam.TAF.Tests
             if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
             {
                 Logger.Info("Test is failed");
-                BrowserFactory.Browser.SaveScreenShot(TestContext.CurrentContext.Test.MethodName, Path.Combine(TestContext.CurrentContext.TestDirectory, TestSettings.ScreenShotPath));
+                BrowserFactory.Browser.SaveScreenShot(TestContext.CurrentContext.Test.MethodName, Path.Join(TestContext.CurrentContext.TestDirectory, TestSettings.ScreenShotPath));
             }
             Logger.Info("Test is finished");
             //BrowserFactory.Browser.Quite();

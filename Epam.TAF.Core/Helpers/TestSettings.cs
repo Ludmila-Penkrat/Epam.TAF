@@ -27,10 +27,9 @@ namespace Epam.TAF.Core.Helpers
 
         //public static string LogsPath => Path.Combine(TestContext.TestDirectory, @GetParameter("LogsPath"));
 
-        public static string LogsPath => Path.Combine(GetParameter("LogsPath"));
+        public static string LogsPath => Path.Join(GetParameter("LogsPath"));
 
-
-        public static string ScreenShotPath => Path.Combine(GetParameter("ScreenShotPath"));
+        public static string ScreenShotPath => Path.Join(GetParameter("ScreenShotPath"));
 
         public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(int.Parse(TestContext.Parameters.Get("WebDriverTimeOut").ToString()));
 
