@@ -6,9 +6,9 @@ namespace Epam.TAF.Core.Helpers
 {
     public static class TestSettings
     {
-        public static TestContext TestContext { get; set; }
+        public static TestContext? TestContext { get; set; }
 
-        private static string GetParameter(string name, string defaultName = null)
+        private static string GetParameter(string name, string? defaultName = null)
         {
 
             return TestContext.Parameters[name];
@@ -24,8 +24,6 @@ namespace Epam.TAF.Core.Helpers
         public static BrowserTypes Browser => EnumUtils.ParseEnum<BrowserTypes>(GetParameter("Browser", "ChromeDriver"));
 
         public static string ApplicationUrl => GetParameter("ApplicationUrl", "https://www.epam.com/");
-
-        //public static string LogsPath => Path.Combine(TestContext.TestDirectory, @GetParameter("LogsPath"));
 
         public static string LogsPath => Path.Join(GetParameter("LogsPath"));
 
