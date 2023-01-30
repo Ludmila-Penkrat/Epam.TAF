@@ -32,7 +32,10 @@ namespace Epam.TAF.Tests
             "Cloud",
             "Blockchain",
             "Open Source",
-            "RPA"
+            "RPA",
+            "Automation",
+            "Contact",
+            "Digital Risk Management"
         };
         [TestCaseSource(nameof(_selectedWord))]
         public void CheckIfSearchResultPageIsDisplayedBySelectedWordsFromList(string selectedWord)

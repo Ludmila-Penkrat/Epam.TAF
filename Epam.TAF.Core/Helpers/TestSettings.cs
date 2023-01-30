@@ -21,7 +21,7 @@ namespace Epam.TAF.Core.Helpers
             return string.Empty;
         }
 
-        public static BrowserTypes Browser => EnumUtils.ParseEnum<BrowserTypes>(GetParameter("Browser", "ChromeDriver"));
+        public static BrowserTypes Browser => EnumUtils.ParseEnum<BrowserTypes>(GetParameter("Browser", "Chrome"));
 
         public static string ApplicationUrl => GetParameter("ApplicationUrl", "https://www.epam.com/");
 
@@ -29,8 +29,12 @@ namespace Epam.TAF.Core.Helpers
 
         public static string ScreenShotPath => Path.Join(GetParameter("ScreenShotPath"));
 
-        public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(int.Parse(TestContext.Parameters.Get("WebDriverTimeOut").ToString()));
+        //public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(int.Parse(TestContext.Parameters.Get("WebDriverTimeOut", 100).ToString()));
+        public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(int.Parse(GetParameter("WebDriverTimeOut").ToString()));
 
-        public static TimeSpan WaitElementTimeOut => TimeSpan.FromSeconds(int.Parse(TestContext.Parameters.Get("WaitElementTimeOut").ToString()));
+        //public static TimeSpan WaitElementTimeOut => TimeSpan.FromSeconds(int.Parse(TestContext.Parameters.Get("WaitElementTimeOut", 100).ToString()));
+        public static TimeSpan WaitElementTimeOut => TimeSpan.FromSeconds(int.Parse(GetParameter("WaitElementTimeOut", "100")));
+
+        public static string DataDir => Path.Join(Directory.GetCurrentDirectory(), GetParameter("TestDataFolder"));
     }
 }

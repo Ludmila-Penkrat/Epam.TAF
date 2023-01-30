@@ -16,6 +16,7 @@
 		<Parameter name ="ScreenShotPath" value="\Screenshots" />
 		<Parameter name ="LogsPath" value="\Logs" />
 		<Parameter name ="ApplicationUrl" value="https://www.epam.com/"/>
+		<Parameter name ="TestDataFolder" value="TestFiles"/>
 	</TestRunParameters>
  
 </RunSettings>

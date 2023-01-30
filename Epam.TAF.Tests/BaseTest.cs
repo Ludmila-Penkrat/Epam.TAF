@@ -1,14 +1,14 @@
 ﻿using Epam.TAF.Core.Browser;
 using Epam.TAF.Core.Helpers;
 using Epam.TAF.Core.Utils;
-using Epam.TAF.Utilities;
+using Epam.TAF.Utilities.Logger;
 using NUnit.Framework;
 
 namespace Epam.TAF.Tests
 {
     public abstract class BaseTest
     {
-        public TestContext TestContext { get; set; }
+        public TestContext? TestContext { get; set; }
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -33,7 +33,6 @@ namespace Epam.TAF.Tests
                 BrowserFactory.Browser.SaveScreenShot(TestContext.CurrentContext.Test.MethodName, Path.Join(TestContext.CurrentContext.TestDirectory, TestSettings.ScreenShotPath));
             }
             Logger.Info("Test is finished");
-            //BrowserFactory.Browser.Quite();
             BrowserFactory.CloseBrowser();
         }
     }
