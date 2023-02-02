@@ -19,5 +19,11 @@ namespace Epam.TAF.Web.PageObgects.Panels
             var result = FooterLinks.GetElements().Where(x => x.GetText().ToLower().Equals(footerLinkName.ToLower())).FirstOrDefault();
             return result;
         }
+
+        public void ClickOnLink(string linkName)
+        {
+            var link = GetFooterLinkByName(linkName);
+            link.Click();
+        }
     }
 }

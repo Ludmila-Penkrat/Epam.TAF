@@ -32,5 +32,10 @@ namespace Epam.TAF.Web.PageObgects.Pages
             SearchButton.Click();
         }
 
+        public void AcceptAllCookies()
+        {
+            AcceptAllCookiesButton.Click();
+        }
+
     }
 }

@@ -23,7 +23,7 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetHeaderLinks))]
         public void HeaderLinkAreWorkingTest(HeaderLinkModel linkName)
         {
-            _mainPage.AcceptAllCookiesButton.Click();
+            _mainPage.AcceptAllCookies();
             _mainPage.HeaderBlock.GetHeaderNavigationLinkByName(linkName.HeaderLink).Click();
 
             Waiters.WaitForCondition(() => _headerLinkPages.Title.IsDisplayed());

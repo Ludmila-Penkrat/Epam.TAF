@@ -14,7 +14,7 @@ namespace Epam.TAF.Web.PageObgects.Panels
         private const string _careersLinkHeaderXPath = "//*[@class ='top-navigation__item-link' and @href = '/careers']";
         private const string _servicesLinkHeaderXPath = "//*[@href='/services' and contains(@class, 'top-navigation__item-link')]";
         private const string _searchPanelXPath = "//*[contains(@class, 'header-search__panel')]";
-        private const string _headerNavigationLinksXPath = "//*[@class='top-navigation__item epam']";
+        private const string _headerNavigationLinksXPath = "//li[contains(@class, 'top-navigation__item')]"; //"//*[@class='top-navigation__item epam']";
         private const string _careerPanelWithLinksXPath = "//*[@class='top-navigation__flyout']";
 
         public CareersPanel CareersPanel => new CareersPanel(By.XPath(_careerPanelWithLinksXPath));
@@ -39,6 +39,11 @@ namespace Epam.TAF.Web.PageObgects.Panels
             BrowserFactory.Browser.Actions().MoveToElement(CareersLink.OriginalElement).Build().Perform();
 
             CareersPanel.JoinOurTeamCareerLink.Click();
+        }
+
+        public void ClickLogoEpam()
+        {
+            EpamLogoHeader.Click();
         }
     }
 }

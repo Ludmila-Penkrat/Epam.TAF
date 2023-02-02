@@ -27,7 +27,7 @@ namespace Epam.TAF.Tests
         {
             Thread.Sleep(2000);
             Waiters.WaitForCondition(() => _mainPage.BannerPanel.IsDisplayed());
-            _mainPage.AcceptAllCookiesButton.Click();
+            _mainPage.AcceptAllCookies();
 
             BrowserFactory.Browser.ScrollToElement(_mainPage.FooterBlock.OriginalElement);
             _mainPage.FooterBlock.GetFooterLinkByName(linkName).Click();
@@ -41,7 +41,7 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetFooterLinks))]
         public void FooterLinkAreWorkingTest(FooterLinkModel linkName)
         {
-            _mainPage.AcceptAllCookiesButton.Click();
+            _mainPage.AcceptAllCookies();
             BrowserFactory.Browser.ScrollToElement(_mainPage.FooterBlock.OriginalElement);
             _mainPage.FooterBlock.GetFooterLinkByName(linkName.FooterLink).Click();
             Waiters.WaitForCondition(() => _footerLinkPages.Title.IsDisplayed());
