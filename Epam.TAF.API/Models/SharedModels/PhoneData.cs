@@ -14,7 +14,7 @@ namespace Epam.TAF.API.Models.SharedModels
         public int СapacityGb { get; set; }
 
         [JsonProperty("price")]
-        public dynamic Price { get; set; }
+        public object Price { get; set; }
 
         [JsonProperty("generation")]
         public string Generation { get; set; }

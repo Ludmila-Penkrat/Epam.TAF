@@ -62,6 +62,8 @@ namespace Epam.TAF.API.Tests
 
             var receivedPhone = new PhonesController(new CustomRestClient()).GetSinglePhone<AllPhonesModel>(createPhone.Id).Phone;
 
+            new PhonesController(new CustomRestClient()).DeletePhone<AllPhonesModel>(createPhone.Id);
+
             Assert.That(receivedPhone, Is.Not.Null, $"Phone with id {createPhone.Id} was not created.");
         }
 
@@ -116,6 +118,8 @@ namespace Epam.TAF.API.Tests
         [Test]
         public void VerifyThatPhoneDeleted()
         {
+            string deleteMessage = "Object with id = {0} has been deleted.";
+
             var phoneToCreate = new PhoneRequestModel
             {
                 Name = "Samsung S22+",
@@ -135,10 +139,13 @@ namespace Epam.TAF.API.Tests
 
             var receivedPhoneAfterDelete = new PhonesController(new CustomRestClient()).GetSinglePhone<AllPhonesModel>(createdPhone.Id);
 
+            var content = response.Response.Content;
+
             Assert.Multiple(() =>
             {
                 Assert.That(response.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK), $"Invalid status code for DELETE request.");
                 Assert.That(receivedPhoneAfterDelete.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+                Assert.That(content.Contains(string.Format(deleteMessage, receivedPhone.Id)), Is.True, "Delete message is absent");
 
             });
         }
@@ -161,13 +168,13 @@ namespace Epam.TAF.API.Tests
 
             var createdPhone = new PhonesController(new CustomRestClient()).AddPhone<AllPhonesModel>(phoneToCreate).Phone;
 
-            var receivedPhone = new PhonesController(new CustomRestClient()).GetSinglePhone<AllPhonesModel>(createdPhone.Id).Phone;
+            var receivedPhone = new PhonesController(new CustomRestClient()).GetSinglePhone<AllPhonesModel>(createdPhone.Id);
 
-            var receivedPhone1 = new PhonesController(new CustomRestClient()).GetSinglePhone<AllPhonesModel>(createdPhone.Id);
+            var responceContent = receivedPhone.Response.Content;
 
-            var responceContent = receivedPhone1.Response.Content;
+            new PhonesController(new CustomRestClient()).DeletePhone<AllPhonesModel>(createdPhone.Id);
 
-            Assert.That(receivedPhone.Data.СapacityGb, Is.EqualTo(capacityGb));
+            Assert.That(responceContent.Contains(capacityGb.ToString()), Is.True, $"Capacity GB {capacityGb} isn't equal or missing in the created phone");
         }
     }
 }
