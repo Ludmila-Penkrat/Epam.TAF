@@ -33,7 +33,6 @@ namespace Epam.TAF.Tests
                 BrowserFactory.Browser.SaveScreenShot(TestContext.CurrentContext.Test.MethodName, Path.Join(TestContext.CurrentContext.TestDirectory, TestSettings.ScreenShotPath));
             }
             Logger.Info("Test is finished");
-            //BrowserFactory.Browser.Quite();
             BrowserFactory.CloseBrowser();
         }
     }

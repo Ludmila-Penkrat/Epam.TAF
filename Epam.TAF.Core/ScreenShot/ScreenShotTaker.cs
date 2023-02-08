@@ -16,8 +16,6 @@ namespace Epam.TAF.Core.ScreenShot
 
             string screenPath = Path.Join(TestSettings.ScreenShotPath, screenFileName);
 
-            //using (Image screenshot = Image.FromStream(new MemoryStream(((ITakesScreenshot)driver).GetScreenshot().AsByteArray)));
-
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(screenPath);
         }
     }
