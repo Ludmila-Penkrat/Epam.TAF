@@ -17,7 +17,10 @@ namespace Epam.TAF.Tests
             "Cloud",
             "Blockchain",
             "Open Source",
-            "RPA"
+            "RPA",
+            "Automation",
+            "Contact",
+            "Digital Risk Management"
         };
 
         [TestCase("Blockchain")]
@@ -35,16 +38,6 @@ namespace Epam.TAF.Tests
             Assert.IsTrue(expectedResult, "Search result of articles is not found");
         }
 
-        private static List<string> _selectedWord = new List<string>()
-        {
-            "Cloud",
-            "Blockchain",
-            "Open Source",
-            "RPA",
-            "Automation",
-            "Contact",
-            "Digital Risk Management"
-        };
         [TestCaseSource(nameof(_selectedWord))]
         public void CheckIfSearchResultPageIsDisplayedBySelectedWordsFromList(string selectedWord)
         {

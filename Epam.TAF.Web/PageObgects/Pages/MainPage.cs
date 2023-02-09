@@ -32,6 +32,5 @@ namespace Epam.TAF.Web.PageObgects.Pages
         {
             SearchButton.Click();
         }
-
     }
 }

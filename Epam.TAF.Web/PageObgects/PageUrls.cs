@@ -8,5 +8,7 @@ namespace Epam.TAF.Web.PageObgects
         public static string HowWeDoItPageUrl = "https://www.epam.com/how-we-do-it";
 
         public static string OurWorkPageUrl = "https://www.epam.com/our-work";
+
+        public static string JoinOurTeamPageUrl = "https://www.epam.com/careers/job-listings";
     }
 }
