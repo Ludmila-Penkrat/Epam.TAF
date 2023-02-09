@@ -1,12 +1,7 @@
 ﻿using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Epam.TAF.Core.Helpers;
 using Epam.TAF.Core.ScreenShot;
 using Epam.TAF.Utilities.Logger;

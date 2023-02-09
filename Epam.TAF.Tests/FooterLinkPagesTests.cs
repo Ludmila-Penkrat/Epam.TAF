@@ -25,7 +25,6 @@ namespace Epam.TAF.Tests
         [TestCase("Web Accessibility")]
         public void FooterLinksOpenPages(string linkName)
         {
-            Thread.Sleep(2000);
             Waiters.WaitForCondition(() => _mainPage.BannerPanel.IsDisplayed());
             _mainPage.AcceptAllCookiesButton.Click();
 
@@ -47,6 +46,23 @@ namespace Epam.TAF.Tests
             Waiters.WaitForCondition(() => _footerLinkPages.Title.IsDisplayed());
 
             Assert.IsTrue(_footerLinkPages.IsPageOpenedByTitle(), $"Page by link with {linkName} isn't opened");
+        }
+
+        [TestCase("Open Source")]
+        [TestCase("Privacy Policy")]
+        [TestCase("Cookie Policy")]
+        [TestCase("Applicant Privacy Notice")]
+        public void FooterLinksOpenPageWithCorrecrUrl(string linkName)
+        {
+            Waiters.WaitForCondition(() => _mainPage.BannerPanel.IsDisplayed());
+            _mainPage.AcceptAllCookiesButton.Click();
+
+            BrowserFactory.Browser.ScrollToElement(_mainPage.FooterBlock.OriginalElement);
+            _mainPage.FooterBlock.GetFooterLinkByName(linkName).Click();
+
+            Waiters.WaitForCondition(() => _footerLinkPages.Title.IsDisplayed());
+
+            Assert.That(_footerLinkPages.IsPageOpened(linkName), Is.True, $"Page by link with {linkName} isn't opened");
         }
 
         private static List<FooterLinkModel> GetFooterLinks()
