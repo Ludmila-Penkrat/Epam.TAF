@@ -8,15 +8,15 @@ namespace Epam.TAF.Web.PageObgects.Pages
     {
         private const string _breadCrumbsEpanContinuumPageXPath = "//*[@href='/services/consult-and-design' and @class='breadcrumbs__link']";
 
-        public override string Url => "https://www.epam.com/services/consult-and-design";
+        public override string Url => PageUrls.EpamContinuumPageUrl;
 
         public override Title Title => new Title(By.TagName("h1"));
 
-        public BreadCrumbs EpanContinuumPageBreadCrumbs => new BreadCrumbs(By.XPath(_breadCrumbsEpanContinuumPageXPath));
+        public BreadCrumbs EpamContinuumPageBreadCrumbs => new BreadCrumbs(By.XPath(_breadCrumbsEpanContinuumPageXPath));
 
         public bool BreadCrumsIsDisplayed()
         {
-            return EpanContinuumPageBreadCrumbs.IsDisplayed();
+            return EpamContinuumPageBreadCrumbs.IsDisplayed();
         }
     }
 }

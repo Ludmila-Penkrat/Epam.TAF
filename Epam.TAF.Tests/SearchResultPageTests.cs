@@ -12,6 +12,17 @@ namespace Epam.TAF.Tests
         private MainPage _mainPage => new MainPage();
         private SearchResultsPage _searchPage => new SearchResultsPage();
 
+        private static List<string> _selectedWord = new List<string>()
+        {
+            "Cloud",
+            "Blockchain",
+            "Open Source",
+            "RPA",
+            "Automation",
+            "Contact",
+            "Digital Risk Management"
+        };
+
         [TestCase("Blockchain")]
         [TestCase("Open Source")]
         [TestCase("Automation")]
@@ -27,21 +38,10 @@ namespace Epam.TAF.Tests
             Assert.IsTrue(expectedResult, "Search result of articles is not found");
         }
 
-        private static List<string> _selectedWord = new List<string>()
-        {
-            "Cloud",
-            "Blockchain",
-            "Open Source",
-            "RPA",
-            "Automation",
-            "Contact",
-            "Digital Risk Management"
-        };
         [TestCaseSource(nameof(_selectedWord))]
         public void CheckIfSearchResultPageIsDisplayedBySelectedWordsFromList(string selectedWord)
         {
             _mainPage.SearchButton.Click();
-            Thread.Sleep(3000);
 
             Waiters.WaitForCondition(() => _mainPage.HeaderBlock.SearchPanel.IsDisplayed());
 

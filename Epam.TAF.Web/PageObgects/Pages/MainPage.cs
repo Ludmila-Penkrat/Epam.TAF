@@ -1,5 +1,6 @@
 ﻿using Epam.TAF.Core.BasePage;
 using Epam.TAF.Core.Elements;
+using Epam.TAF.Core.Helpers;
 using Epam.TAF.Web.PageObgects.Panels;
 using OpenQA.Selenium;
 
@@ -13,7 +14,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
         private const string _acceptAllCookiesButtonXPath = "//*[@id='onetrust-accept-btn-handler']";
         private const string _searchButtonHeaderXPath = "//*[@class = 'header-search__button header__icon']";
 
-        public override string Url => "https://www.epam.com/";
+        public override string Url => TestSettings.ApplicationUrl;
 
         public override Title Title => new Title(By.TagName("h1"));
 

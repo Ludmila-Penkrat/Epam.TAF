@@ -13,6 +13,7 @@ namespace Epam.TAF.Web.PageObgects.Panels
         private const string _itemInDropDownSearchPanelXPath = "//*[@class='frequent-searches__item']";
 
         private TextInput SearchField => new TextInput(By.XPath(_searchFieldXPath));
+
         private Button FindButton => new Button(By.XPath(_findButtonXPath));
 
         private List<IWebElement> _collectionOfItemsInDropDown => BrowserFactory.Browser.FindElements(By.XPath(_itemInDropDownSearchPanelXPath)).ToList();
@@ -30,7 +31,14 @@ namespace Epam.TAF.Web.PageObgects.Panels
         public IWebElement GetElementFromCollection(string name)
         {
             var elementFromCollection = _collectionOfItemsInDropDown.Where(x => x.Text.Contains(name)).FirstOrDefault();
-            return elementFromCollection;
+            if (elementFromCollection != null) 
+            {
+                return elementFromCollection;
+            }
+            else
+            {
+                throw new NoSuchElementException("The element is not found");
+            }
         }
     }
 }

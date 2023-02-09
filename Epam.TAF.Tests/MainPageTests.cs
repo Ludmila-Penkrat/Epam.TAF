@@ -1,4 +1,5 @@
 ﻿using Epam.TAF.Core.Browser;
+using Epam.TAF.Core.Utils;
 using Epam.TAF.Web.PageObgects.Pages;
 using NUnit.Framework;
 
@@ -14,8 +15,7 @@ namespace Epam.TAF.Tests
         [Test]
         public void MainPageIsOpened()
         {
-            Thread.Sleep(2000);
-            //Waiters.WaitForPageLoad();
+            Waiters.WaitForPageLoad();
             var actualResult = BrowserFactory.Browser.GetUrl();
             var expectedUrlForMainPage = _mainPage.GetPageUrl();
 
@@ -25,8 +25,7 @@ namespace Epam.TAF.Tests
         [Test]
         public void CheckWeDoItPageIsOpenedAfterMoveAndReload()
         {
-            //Waiters.WaitForPageLoad();
-            Thread.Sleep(2000);
+            Waiters.WaitForPageLoad();
             _howWeDoItPage.NavigateToPage();
             _ourWorkPage.NavigateToPage();
             BrowserFactory.Browser.Refresh();

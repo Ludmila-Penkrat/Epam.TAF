@@ -25,7 +25,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
 
         private const string _messageForEmptyResult = "Sorry, your search returned no results. Please try another combination.";
 
-        public override string Url => "https://www.epam.com/careers/job-listings";
+        public override string Url => PageUrls.JoinOurTeamPageUrl;
 
         public override Title Title => new Title(By.TagName("h1"));
 
