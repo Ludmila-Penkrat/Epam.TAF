@@ -8,7 +8,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
     {
         private const string _servicesBreadCrumbsXPath = "//*[@href = '/services' and @class='breadcrumbs__link']";
 
-        public override string Url => "https://www.epam.com/services";
+        public override string Url => PageUrls.ServicesPageUrl;
 
         public override Title Title => new Title(By.TagName("h1"));
 

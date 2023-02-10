@@ -24,8 +24,7 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetKeyWord))]
         public void CheckKeywordIsPresentOnJoinOurTeamPageWithResult(KeyWordModel keyword)
         {
-            _joinOurTeamPage.ClickOnKeywordField();
-            _joinOurTeamPage.InsertSearchWordInKeywordField(keyword.KeyWord);
+            _joinOurTeamPage.FillInSearchFileds(keyword.KeyWord);
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
             Waiters.WaitForPageLoad();
@@ -46,9 +45,10 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetSkill))]
         public void CheckSkillIsPresentOnJoinOurTeamPageWithResult(SkillsJoinOurTeamModel skill)
         {
-            _joinOurTeamPage.OpenSkillsDropDownOnJoinOurTeamPage();
+            _joinOurTeamPage.FillInSearchFileds(skill.SkillJoinOurTeam);
+            //_joinOurTeamPage.OpenSkillsDropDownOnJoinOurTeamPage();
 
-            _joinOurTeamPage.SelectCheckBoxByName(skill.SkillJoinOurTeam);
+            //_joinOurTeamPage.SelectCheckBoxByName(skill.SkillJoinOurTeam);
 
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
@@ -63,10 +63,10 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetLocation))]
         public void CheckLocationPresentOnJoinOurTeamPageWithResult(LocationJoinOurTeamModel location)
         {
-            _joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
+            //_joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
 
-            _joinOurTeamPage.SelectCountryLocationByName(location.CountryLocationJoinOurTeam, location.LocationJoinOurTeam);
-
+            //_joinOurTeamPage.SelectCountryLocationByName(location.CountryLocationJoinOurTeam, location.LocationJoinOurTeam);
+            _joinOurTeamPage.FillInSearchFileds(location.CountryLocationJoinOurTeam, location.LocationJoinOurTeam);
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
             Waiters.WaitForCondition(() => _joinOurTeamPage.Title.IsEnabled());
@@ -80,16 +80,17 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetAllFields))]
         public void CheckResultPresentWhenAllFieldsFilled(AllFieldsFillJoinOurTeamModel allfields)
         {
-            _joinOurTeamPage.ClickOnKeywordField();
-            _joinOurTeamPage.InsertSearchWordInKeywordField(allfields.KeyWordJoinOurTeam);
-            
+            //_joinOurTeamPage.ClickOnKeywordField();
+            //_joinOurTeamPage.InsertSearchWordInKeywordField(allfields.KeyWordJoinOurTeam);
 
-            _joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
-            _joinOurTeamPage.SelectCountryLocationByName(allfields.CountryLocationJoinOurTeam, allfields.CityLocationJoinOurTeam);
 
-            _joinOurTeamPage.OpenSkillsDropDownOnJoinOurTeamPage();
-            _joinOurTeamPage.SelectCheckBoxByName(allfields.SkillJoinOurTeam);
+            //_joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
+            //_joinOurTeamPage.SelectCountryLocationByName(allfields.CountryLocationJoinOurTeam, allfields.CityLocationJoinOurTeam);
 
+            //_joinOurTeamPage.OpenSkillsDropDownOnJoinOurTeamPage();
+            //_joinOurTeamPage.SelectCheckBoxByName(allfields.SkillJoinOurTeam);
+
+            _joinOurTeamPage.FillInSearchFileds(allfields.KeyWordJoinOurTeam, allfields.CountryLocationJoinOurTeam, allfields.CityLocationJoinOurTeam, allfields.SkillJoinOurTeam);
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
             Waiters.WaitForCondition(() => _joinOurTeamPage.IsTitleDisplayed());
@@ -118,12 +119,13 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetMessageWithoutSearchResult))]
         public void CheckDisplayMessageIfResultNotFound(ValueForGetMessageModel messageEmptyResult)
         {
-            _joinOurTeamPage.ClickOnKeywordField();
-            _joinOurTeamPage.InsertSearchWordInKeywordField(messageEmptyResult.KeyWordJoinOurTeam);
+            //_joinOurTeamPage.ClickOnKeywordField();
+            //_joinOurTeamPage.InsertSearchWordInKeywordField(messageEmptyResult.KeyWordJoinOurTeam);
 
-            _joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
-            _joinOurTeamPage.SelectCountryLocationByName(messageEmptyResult.CountryLocationJoinOurTeam, messageEmptyResult.CityLocationJoinOurTeam);
+            //_joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
+            //_joinOurTeamPage.SelectCountryLocationByName(messageEmptyResult.CountryLocationJoinOurTeam, messageEmptyResult.CityLocationJoinOurTeam);
 
+            _joinOurTeamPage.FillInSearchFileds(messageEmptyResult.KeyWordJoinOurTeam, messageEmptyResult.CountryLocationJoinOurTeam, messageEmptyResult.CityLocationJoinOurTeam);
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
             Waiters.WaitForCondition(() => _joinOurTeamPage.EmptyResultTitleDisplayed());

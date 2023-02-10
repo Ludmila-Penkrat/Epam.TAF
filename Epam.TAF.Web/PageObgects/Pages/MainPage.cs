@@ -37,6 +37,5 @@ namespace Epam.TAF.Web.PageObgects.Pages
         {
             AcceptAllCookiesButton.Click();
         }
-
     }
 }

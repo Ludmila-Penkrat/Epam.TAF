@@ -30,8 +30,8 @@ namespace Epam.TAF.BDD.Steps.Pages
             BrowserFactory.Browser.GoToUrl(pageUrl);
         }
 
-        [Then(@"I check that navigate on landing page")]
-        public void ThenICheckThatNavigateOnLandingPage()
+        [Then(@"I check that landing page is opened")]
+        public void ThenICheckThatLandingPageIsOpened()
         {
             var actualOpenedPageUrl = BrowserFactory.Browser.GetUrl();
             var expectedPageUrl = LandingPage.Url;

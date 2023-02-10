@@ -57,8 +57,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
         public bool IsMessageForNotFoundResult()
         {
             var displayedMessage = EmptyResultTitle.GetText();
-            if (displayedMessage.Equals(_messageForEmptyResult)) { return true; }
-            else { return false; }
+            return displayedMessage.Equals(_messageForEmptyResult);
         }
 
         public bool IsTitleDisplayed()
@@ -70,14 +69,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
         {
             var titleLine = GetTitleWithResult();
 
-            if (titleLine.Contains("job openings related to", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return titleLine.Contains("job openings related to", StringComparison.OrdinalIgnoreCase);
         }
         public string GetTitleWithResult()
         {
@@ -94,7 +86,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
             KeyWordTextInput.SendKeys(input);
         }
 
-        public void OpenSkillsDropDownOnJoinOurTeamPage() 
+        public void OpenSkillsDropDownOnJoinOurTeamPage()
         {
             SkillsDropDownJoinOurTeam.Click();
         }
@@ -107,7 +99,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
         public List<CheckBox> GetSkillsCheckBoxes()
         {
             var listCheckbox = CheckBoxSkills.GetElements().ToList();
-            return  listCheckbox;
+            return listCheckbox;
         }
 
         public int GetCheckBoxesCount()
@@ -127,7 +119,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
                     GetSkillsCheckBoxes().ElementAt(i).Click();
                     break;
                 }
-            } 
+            }
         }
 
         public List<Link> GetLocationLinks()
@@ -151,6 +143,46 @@ namespace Epam.TAF.Web.PageObgects.Pages
                 if (countryLocationName.Contains(country))
                 {
                     GetLocationLinks().ElementAt(i).Click();
+
+                    var nestedCityLink = new ElementsList<Link>(By.XPath(_citiesNestedLinkInDropDownJoinOurTeamXPath));
+                    nestedCityLink.GetElements().Where(x => x.GetAttribut("innerText").Contains(city)).FirstOrDefault().Click();
+                    break;
+                }
+            }
+        }
+
+        public void FillInSearchFileds(string? inputWord = null, string? selectedCheckboxName = null, string? country = null, string? city = null)
+        {
+            KeyWordTextInput.Click();
+            KeyWordTextInput.SendKeys(inputWord);
+
+            SkillsDropDownJoinOurTeam.Click();
+            LocationDropDownJoinOurTeam.Click();
+
+            var listCheckbox = CheckBoxSkills.GetElements().ToList();
+            var countCheckBoxes = listCheckbox.Count();
+
+            for (int i = 0; i < countCheckBoxes; i++)
+            {
+                string checkBoxName = listCheckbox.ElementAt(i).GetAttribut("innerText");
+
+                if (checkBoxName.Equals(selectedCheckboxName))
+                {
+                    listCheckbox.ElementAt(i).Click();
+                    break;
+                }
+            }
+
+            var listLocationLinks = CountriesLocationInDropDownOnJoinOurTeam.GetElements().ToList();
+            var countLocationLinks = listLocationLinks.Count();
+
+            for (int i = 0; i < countLocationLinks; i++)
+            {
+                string countryLocationName = listLocationLinks.ElementAt(i).GetAttribut("innerText");
+
+                if (countryLocationName.Contains(country))
+                {
+                    listLocationLinks.ElementAt(i).Click();
 
                     var nestedCityLink = new ElementsList<Link>(By.XPath(_citiesNestedLinkInDropDownJoinOurTeamXPath));
                     nestedCityLink.GetElements().Where(x => x.GetAttribut("innerText").Contains(city)).FirstOrDefault().Click();

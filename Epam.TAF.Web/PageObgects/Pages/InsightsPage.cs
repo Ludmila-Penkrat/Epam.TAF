@@ -8,13 +8,13 @@ namespace Epam.TAF.Web.PageObgects.Pages
     {
         private const string _insightsPageBreadCrumbsXPath = "//*[@href = '/insights' and @class='breadcrumbs__link']";
 
-        public override string Url => "https://www.epam.com/insights";
+        public override string Url => PageUrls.InsightsPageUrl;
 
-        public override Title Title => new Title(By.TagName("h1"));
+        public override Title Title => new Title(By.XPath(_insightsPageBreadCrumbsXPath)); // use XPath for breadCrumbs beacause Title is missing for Insights Page
 
         public BreadCrumbs InsightsPageBreadCrumbs => new BreadCrumbs(By.XPath(_insightsPageBreadCrumbsXPath));
 
-        public bool InsightsPageBreadCrumsIsDisplayed()
+        public bool InsightsPageBreadCrumbsIsDisplayed()
         {
             return InsightsPageBreadCrumbs.IsDisplayed();
         }

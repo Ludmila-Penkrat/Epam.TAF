@@ -16,8 +16,7 @@ namespace Epam.TAF.Web.PageObgects.Panels
 
         public Link GetFooterLinkByName(string footerLinkName)
         {
-            var result = FooterLinks.GetElements().Where(x => x.GetText().ToLower().Equals(footerLinkName.ToLower())).FirstOrDefault();
-            return result;
+            return FooterLinks.GetElements().Where(x => x.GetText().ToLower().Equals(footerLinkName.ToLower())).FirstOrDefault();
         }
 
         public void ClickOnLink(string linkName)

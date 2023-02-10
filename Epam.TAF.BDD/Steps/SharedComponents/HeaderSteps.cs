@@ -21,10 +21,8 @@ namespace Epam.TAF.BDD.Steps.SharedComponents
         [When(@"I click on Header Link '(Services|Insights|About|Careers)'")]
         public void WhenIClickOnHeaderLinkServices(HeaderLinkEnums headerLink)
         {
-                    Header.GetHeaderNavigationLinkByName(headerLink.ToString()).Click();
-                    
-            }
-
+             Header.GetHeaderNavigationLinkByName(headerLink.ToString()).Click();
         }
     }
+}
 

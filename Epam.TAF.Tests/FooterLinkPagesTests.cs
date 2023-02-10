@@ -43,7 +43,7 @@ namespace Epam.TAF.Tests
         public void FooterLinkAreWorkingTest(FooterLinkModel linkName)
         {
             Waiters.WaitForCondition(() => _mainPage.BannerPanel.IsDisplayed());
-            _mainPage.AcceptAllCookiesButton.Click();
+            _mainPage.AcceptAllCookies();
 
             Waiters.WaitForCondition(() => !_mainPage.BannerPanel.IsDisplayed());
             _mainPage.AcceptAllCookies();
@@ -63,7 +63,7 @@ namespace Epam.TAF.Tests
         public void FooterLinksOpenPageWithCorrecrUrl(string linkName)
         {
             Waiters.WaitForCondition(() => _mainPage.BannerPanel.IsDisplayed());
-            _mainPage.AcceptAllCookiesButton.Click();
+            _mainPage.AcceptAllCookies();
 
             Waiters.WaitForCondition(() => !_mainPage.BannerPanel.IsDisplayed());
             BrowserFactory.Browser.ScrollToElement(_mainPage.FooterBlock.OriginalElement);
