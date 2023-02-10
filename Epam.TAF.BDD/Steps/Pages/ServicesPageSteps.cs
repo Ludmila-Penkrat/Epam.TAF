@@ -1,8 +1,10 @@
 ﻿using Epam.TAF.Web.PageObgects.Pages;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace Epam.TAF.BDD.Steps.Pages
 {
+    [Binding]
     public class ServicesPageSteps
     {
         private ServicesPage ServicesPage = new();
@@ -10,8 +12,8 @@ namespace Epam.TAF.BDD.Steps.Pages
         [Then(@"I check that 'Services' page is opened")]
         public void ThenICheckThatServicesPageIsOpened()
         {
-            ServicesPage.ServisesPageBreadcrumbsIsDisplayed();
+            var servisesPageIsOpened = ServicesPage.ServisesPageBreadcrumbsIsDisplayed();
+            Assert.That(servisesPageIsOpened, Is.True, "Servises page isn't opened");
         }
-
     }
 }

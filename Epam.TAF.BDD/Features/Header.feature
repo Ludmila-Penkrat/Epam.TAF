@@ -46,3 +46,17 @@ Scenario Outline: Epam Site - Header - Check that Careers Header links is opened
 	Given I navigate to landing page of EPAM site
 	When I click on Header Link 'Careers'
 	Then I check that 'Careers' page is opened
+
+@HeaderLinks
+@Smoke
+Scenario Outline: Epam Site - Header - Check that How We Do It Header links is opened page with the same name   
+	Given I navigate to landing page of EPAM site
+	When I click on Header Link 'How We Do It'
+	Then I check that 'How We Do It' page is opened
+
+@HeaderLinks
+@Smoke
+Scenario Outline: Epam Site - Header - Check that Our Work Header links is opened page with the same name   
+	Given I navigate to landing page of EPAM site
+	When I click on Header Link 'Our Work'
+	Then I check that 'Our Work' page is opened

@@ -214,46 +214,6 @@ namespace Epam.TAF.Web.PageObgects.Pages
             }
         }
 
-        public void FillInSearchFileds(string? inputWord = null, string? selectedCheckboxName = null, string? country = null, string? city = null)
-        {
-            KeyWordTextInput.Click();
-            KeyWordTextInput.SendKeys(inputWord);
-
-            SkillsDropDownJoinOurTeam.Click();
-            LocationDropDownJoinOurTeam.Click();
-
-            var listCheckbox = CheckBoxSkills.GetElements().ToList();
-            var countCheckBoxes = listCheckbox.Count();
-
-            for (int i = 0; i < countCheckBoxes; i++)
-            {
-                string checkBoxName = listCheckbox.ElementAt(i).GetAttribut("innerText");
-
-                if (checkBoxName.Equals(selectedCheckboxName))
-                {
-                    listCheckbox.ElementAt(i).Click();
-                    break;
-                }
-            }
-
-            var listLocationLinks = CountriesLocationInDropDownOnJoinOurTeam.GetElements().ToList();
-            var countLocationLinks = listLocationLinks.Count();
-
-            for (int i = 0; i < countLocationLinks; i++)
-            {
-                string countryLocationName = listLocationLinks.ElementAt(i).GetAttribut("innerText");
-
-                if (countryLocationName.Contains(country))
-                {
-                    listLocationLinks.ElementAt(i).Click();
-
-                    var nestedCityLink = new ElementsList<Link>(By.XPath(_citiesNestedLinkInDropDownJoinOurTeamXPath));
-                    nestedCityLink.GetElements().Where(x => x.GetAttribut("innerText").Contains(city)).FirstOrDefault().Click();
-                    break;
-                }
-            }
-        }
-
         public void ClickFindButtonOnJoinOurTeamPage()
         {
             FindButtonJoinOurTeamPage.Click();

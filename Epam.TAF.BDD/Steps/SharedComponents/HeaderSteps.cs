@@ -1,5 +1,6 @@
 ﻿
 using Epam.TAF.Core.Enums;
+using Epam.TAF.Core.Helpers;
 using Epam.TAF.Web.PageObgects.Pages;
 using Epam.TAF.Web.PageObgects.Panels;
 using NUnit.Framework;
@@ -18,10 +19,11 @@ namespace Epam.TAF.BDD.Steps.SharedComponents
             Header.ClickLogoEpam();
         }
 
-        [When(@"I click on Header Link '(Services|Insights|About|Careers)'")]
+        [When(@"I click on Header Link '(Services|Insights|About|Careers|How We Do It|Our Work)'")]
         public void WhenIClickOnHeaderLinkServices(HeaderLinkEnums headerLink)
         {
-             Header.GetHeaderNavigationLinkByName(headerLink.ToString()).Click();
+             var linkName = headerLink.GetAttribute<HeaderLinkAttribute>().LinkName.ToString();
+             Header.GetHeaderNavigationLinkByName(linkName).Click();
         }
     }
 }
