@@ -96,6 +96,7 @@ namespace Epam.TAF.Tests
             var articalsContainSelectedSkill =_joinOurTeamPage.IsResultHasSearchWord(allfields.SkillJoinOurTeam);
 
             Waiters.WaitForCondition(() => _joinOurTeamPage.IsTitleDisplayed());
+
             var actualTitleWithMarkedWords = _joinOurTeamPage.IsTitleForPageWithResults();
 
             Assert.Multiple(() =>
