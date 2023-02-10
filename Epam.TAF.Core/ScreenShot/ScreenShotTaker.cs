@@ -14,9 +14,7 @@ namespace Epam.TAF.Core.ScreenShot
 
             string screenFileName = $"{testName}_{DateTime.Now:dd.MM}.{ScreenshotImageFormat.Jpeg.ToString().ToLowerInvariant()}";
 
-            string screenPath = Path.Combine(TestSettings.ScreenShotPath, screenFileName);
-
-            //using (Image screenshot = Image.FromStream(new MemoryStream(((ITakesScreenshot)driver).GetScreenshot().AsByteArray)));
+            string screenPath = Path.Join(TestSettings.ScreenShotPath, screenFileName);
 
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(screenPath);
         }

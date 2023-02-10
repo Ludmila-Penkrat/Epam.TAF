@@ -6,9 +6,9 @@ namespace Epam.TAF.Core.Helpers
 {
     public static class TestSettings
     {
-        public static TestContext TestContext { get; set; }
+        public static TestContext? TestContext { get; set; }
 
-        private static string GetParameter(string name, string defaultName = null)
+        private static string GetParameter(string name, string? defaultName = null)
         {
 
             return TestContext.Parameters[name];
@@ -25,12 +25,9 @@ namespace Epam.TAF.Core.Helpers
 
         public static string ApplicationUrl => GetParameter("ApplicationUrl", "https://www.epam.com/");
 
-        //public static string LogsPath => Path.Combine(TestContext.TestDirectory, @GetParameter("LogsPath"));
+        public static string LogsPath => Path.Join(GetParameter("LogsPath"));
 
-        public static string LogsPath => Path.Combine(@GetParameter("LogsPath"));
-
-
-        public static string ScreenShotPath => Path.Combine(GetParameter("ScreenShotPath"));
+        public static string ScreenShotPath => Path.Join(GetParameter("ScreenShotPath"));
 
         public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(int.Parse(TestContext.Parameters.Get("WebDriverTimeOut").ToString()));
 

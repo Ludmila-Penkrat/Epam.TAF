@@ -4,18 +4,23 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />
-    <PackageReference Include="NUnit.ConsoleRunner" Version="3.16.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
-    <PackageReference Include="Selenium.Support" Version="4.8.0" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="109.0.5414.7400" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Epam.TAF.Core\Epam.TAF.Core.csproj" />
     <ProjectReference Include="..\Epam.TAF.Utilities\Epam.TAF.Utilities.csproj" />
+    <ProjectReference Include="..\Epam.TAF.Web\Epam.TAF.Web.csproj" />
   </ItemGroup>
 
 </Project>
