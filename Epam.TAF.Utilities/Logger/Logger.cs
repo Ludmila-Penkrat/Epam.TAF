@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace Epam.TAF.Utilities
+namespace Epam.TAF.Utilities.Logger
 {
     public static class Logger
     {

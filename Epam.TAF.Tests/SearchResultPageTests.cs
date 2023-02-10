@@ -17,7 +17,10 @@ namespace Epam.TAF.Tests
             "Cloud",
             "Blockchain",
             "Open Source",
-            "RPA"
+            "RPA",
+            "Automation",
+            "Contact",
+            "Digital Risk Management"
         };
 
         [TestCase("Blockchain")]

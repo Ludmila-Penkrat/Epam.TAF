@@ -3,8 +3,8 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
 using Epam.TAF.Core.Helpers;
-using Epam.TAF.Utilities;
 using Epam.TAF.Core.ScreenShot;
+using Epam.TAF.Utilities.Logger;
 
 namespace Epam.TAF.Core.Browser
 {
