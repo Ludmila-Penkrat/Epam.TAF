@@ -2,9 +2,7 @@
 using Epam.TAF.Core.Browser;
 using Epam.TAF.Core.Elements;
 using Epam.TAF.Core.Helpers;
-using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
 
 namespace Epam.TAF.Web.PageObgects.Pages
 {

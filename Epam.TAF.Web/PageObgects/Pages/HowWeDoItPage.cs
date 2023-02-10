@@ -14,7 +14,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
 
         public BreadCrumbs HowWeDoItPageBreadCrumbs => new BreadCrumbs(By.XPath(_breadCrumbsHowWeDoItPageXPath));
 
-        public bool BreadCrumsHowWeDoItPageIsDisplayed()
+        public bool HowWeDoItPageBreadCrumsIsDisplayed()
         {
             return HowWeDoItPageBreadCrumbs.IsDisplayed();
         }

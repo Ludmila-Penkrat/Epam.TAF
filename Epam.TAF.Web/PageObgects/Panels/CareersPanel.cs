@@ -15,11 +15,7 @@ namespace Epam.TAF.Web.PageObgects.Panels
         private const string _joinOurTeamLinkOnCareerPanelXPath = "//*[@href='/careers/job-listings']";
         private const string _referralProgramLinkOnCareerPanelXPath = "//*[@href='/careers/external-referral-program']";
 
-
         public Link JoinOurTeamCareerLink => new Link(By.XPath(_joinOurTeamLinkOnCareerPanelXPath));
         public Link ReferralProgramCareerLink => new Link(By.XPath(_referralProgramLinkOnCareerPanelXPath));
     }
-
-   
-
 }

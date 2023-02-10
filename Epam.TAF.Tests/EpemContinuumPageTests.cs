@@ -15,7 +15,7 @@ namespace Epam.TAF.Tests
         public void EpamContinuumPageIsOpened()
         {
             Waiters.WaitForCondition(() => _mainPage.BannerPanel.IsDisplayed());
-            _mainPage.AcceptAllCookiesButton.Click();
+            _mainPage.AcceptAllCookies();
 
             BrowserFactory.Browser.ScrollToElement(_mainPage.FooterBlock.OriginalElement);
             _mainPage.FooterBlock.EpamContinuumLink.Click();

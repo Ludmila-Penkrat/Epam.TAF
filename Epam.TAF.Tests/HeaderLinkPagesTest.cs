@@ -24,7 +24,8 @@ namespace Epam.TAF.Tests
         public void HeaderLinkAreWorkingTest(HeaderLinkModel linkName)
         {
             Waiters.WaitForCondition(() => _mainPage.AcceptAllCookiesButton.IsDisplayed());
-            _mainPage.AcceptAllCookiesButton.Click();
+            _mainPage.AcceptAllCookies();
+
             _mainPage.HeaderBlock.GetHeaderNavigationLinkByName(linkName.HeaderLink).Click();
 
             Waiters.WaitForCondition(() => _headerLinkPages.Title.IsDisplayed());
