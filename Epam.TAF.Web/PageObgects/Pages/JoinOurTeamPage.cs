@@ -16,12 +16,15 @@ namespace Epam.TAF.Web.PageObgects.Pages
         private const string _skillsDropDownXPath = "//*[@class= 'multi-select-dropdown']";
         private const string _checkBoxesSkillsInDropDownXPath = "//*[@class= 'checkbox-custom-label']";
 
-        private const string _findButtonJoinOurTeamPageXPath = "//*[contains(@class, 'recruiting-search__submit')] ";
+        private const string _findButtonJoinOurTeamPageXPath = "//*[contains(@class, 'recruiting-search__submit')]";
 
         private const string _titleWithkeywordResultsXPath = "//*[contains(@class, 'search-result__heading')]";
         private const string _resultsOnJoinOurTeamPageXPath = "//*[@class='search-result__item']";
+        private const string _searchResultListOnJoinOurTeamPageXPath = "//*[contains(@class, 'search-result__list')]";
 
         private const string _titleForEmptySearchResult = "//div[contains(@class, 'search-result__error-message')]";
+
+        private const string _spinnerXPath = "//*[contains(@class, 'preloader')]";
 
         private const string _messageForEmptyResult = "Sorry, your search returned no results. Please try another combination.";
 
@@ -43,6 +46,10 @@ namespace Epam.TAF.Web.PageObgects.Pages
 
         public Panel CheckBoxesSkillsPanel => new Panel(By.XPath(_skillsDropDownXPath));
 
+        public Panel SearchResultLinksPanel => new Panel(By.XPath(_searchResultListOnJoinOurTeamPageXPath));
+
+        public SpinnerElement SpinnerElement => new SpinnerElement(By.XPath(_spinnerXPath));
+
         public ElementsList<CheckBox> CheckBoxSkills => new ElementsList<CheckBox>(By.XPath(_checkBoxesSkillsInDropDownXPath));
 
         public ElementsList<Link> ResultsSkillsOnJoinOurTeam => new ElementsList<Link>(By.XPath(_resultsOnJoinOurTeamPageXPath));
@@ -57,8 +64,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
         public bool IsMessageForNotFoundResult()
         {
             var displayedMessage = EmptyResultTitle.GetText();
-            if (displayedMessage.Equals(_messageForEmptyResult)) { return true; }
-            else { return false; }
+            return displayedMessage.Equals(_messageForEmptyResult);
         }
 
         public bool IsTitleDisplayed()
@@ -70,18 +76,67 @@ namespace Epam.TAF.Web.PageObgects.Pages
         {
             var titleLine = GetTitleWithResult();
 
-            if (titleLine.Contains("job openings related to", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return titleLine.Contains("job openings related to", StringComparison.OrdinalIgnoreCase);
         }
         public string GetTitleWithResult()
         {
             return Title.GetText().ToUpper();
+        }
+
+        public bool IsSpinnerIsDisplayed()
+        {
+            return SpinnerElement.IsDisplayed();
+        }
+
+        public void FillInSearchFileds(string? inputWord = null, string? selectedCheckboxName = null, string? country = null, string? city = null)
+        {
+            if(inputWord != null)
+            {
+                KeyWordTextInput.Click();
+                KeyWordTextInput.SendKeys(inputWord);
+            }
+  
+            if(selectedCheckboxName != null)
+            {
+                SkillsDropDownJoinOurTeam.Click();
+                
+                var listCheckbox = CheckBoxSkills.GetElements().ToList();
+                var countCheckBoxes = listCheckbox.Count();
+
+                for (int i = 0; i < countCheckBoxes; i++)
+                {
+                    string checkBoxName = listCheckbox.ElementAt(i).GetAttribut("innerText");
+
+                    if (checkBoxName.Equals(selectedCheckboxName))
+                    {
+                        listCheckbox.ElementAt(i).Click();
+                        break;
+                    }
+                }
+            }
+
+            if (country != null || city != null)
+            {
+                LocationDropDownJoinOurTeam.Click();
+
+                var listLocationLinks = CountriesLocationInDropDownOnJoinOurTeam.GetElements().ToList();
+                var countLocationLinks = listLocationLinks.Count();
+
+                for (int i = 0; i < countLocationLinks; i++)
+                {
+                    string countryLocationName = listLocationLinks.ElementAt(i).GetAttribut("innerText");
+
+                    if (countryLocationName.Contains(country))
+                    {
+                        listLocationLinks.ElementAt(i).Click();
+
+                        var nestedCityLink = new ElementsList<Link>(By.XPath(_citiesNestedLinkInDropDownJoinOurTeamXPath));
+                        nestedCityLink.GetElements().Where(x => x.GetAttribut("innerText").Contains(city)).FirstOrDefault().Click();
+                        break;
+                    }
+                }
+            }
+            
         }
 
         public void ClickOnKeywordField()
@@ -94,7 +149,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
             KeyWordTextInput.SendKeys(input);
         }
 
-        public void OpenSkillsDropDownOnJoinOurTeamPage() 
+        public void OpenSkillsDropDownOnJoinOurTeamPage()
         {
             SkillsDropDownJoinOurTeam.Click();
         }
@@ -107,7 +162,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
         public List<CheckBox> GetSkillsCheckBoxes()
         {
             var listCheckbox = CheckBoxSkills.GetElements().ToList();
-            return  listCheckbox;
+            return listCheckbox;
         }
 
         public int GetCheckBoxesCount()
@@ -127,7 +182,7 @@ namespace Epam.TAF.Web.PageObgects.Pages
                     GetSkillsCheckBoxes().ElementAt(i).Click();
                     break;
                 }
-            } 
+            }
         }
 
         public List<Link> GetLocationLinks()

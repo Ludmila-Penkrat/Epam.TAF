@@ -24,12 +24,12 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetKeyWord))]
         public void CheckKeywordIsPresentOnJoinOurTeamPageWithResult(KeyWordModel keyword)
         {
-            _joinOurTeamPage.ClickOnKeywordField();
-            _joinOurTeamPage.InsertSearchWordInKeywordField(keyword.KeyWord);
+            _joinOurTeamPage.FillInSearchFileds(inputWord: keyword.KeyWord);
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
             Waiters.WaitForPageLoad();
-            Waiters.WaitForCondition(() => _joinOurTeamPage.IsTitleDisplayed());
+
+            Waiters.WaitForCondition(() => !_joinOurTeamPage.IsSpinnerIsDisplayed());
             
             var titleForSearcheResult = _joinOurTeamPage.GetTitleWithResult();
 
@@ -46,14 +46,13 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetSkill))]
         public void CheckSkillIsPresentOnJoinOurTeamPageWithResult(SkillsJoinOurTeamModel skill)
         {
-            _joinOurTeamPage.OpenSkillsDropDownOnJoinOurTeamPage();
-
-            _joinOurTeamPage.SelectCheckBoxByName(skill.SkillJoinOurTeam);
+            _joinOurTeamPage.FillInSearchFileds(selectedCheckboxName: skill.SkillJoinOurTeam);
 
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
-            Waiters.WaitForCondition(() => _joinOurTeamPage.Title.IsEnabled());
-            Thread.Sleep(2000);
+            Waiters.WaitForPageLoad();
+
+            Waiters.WaitForCondition(() => !_joinOurTeamPage.IsSpinnerIsDisplayed());
 
             var expectedResult = _joinOurTeamPage.IsResultHasSearchWord(skill.SkillJoinOurTeam);
             Assert.That(expectedResult, Is.True, "Search results don't contain selected skill.");
@@ -63,13 +62,13 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetLocation))]
         public void CheckLocationPresentOnJoinOurTeamPageWithResult(LocationJoinOurTeamModel location)
         {
-            _joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
-
-            _joinOurTeamPage.SelectCountryLocationByName(location.CountryLocationJoinOurTeam, location.LocationJoinOurTeam);
+            _joinOurTeamPage.FillInSearchFileds(country: location.CountryLocationJoinOurTeam, city: location.LocationJoinOurTeam);
 
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
-            Waiters.WaitForCondition(() => _joinOurTeamPage.Title.IsEnabled());
+            Waiters.WaitForPageLoad();
+
+            Waiters.WaitForCondition(() => !_joinOurTeamPage.IsSpinnerIsDisplayed());
 
             var expectedResult = _joinOurTeamPage.IsResultHasSearchWord(location.LocationJoinOurTeam) || _joinOurTeamPage.IsResultHasSearchWord(location.CountryLocationJoinOurTeam);
 
@@ -80,19 +79,14 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetAllFields))]
         public void CheckResultPresentWhenAllFieldsFilled(AllFieldsFillJoinOurTeamModel allfields)
         {
-            _joinOurTeamPage.ClickOnKeywordField();
-            _joinOurTeamPage.InsertSearchWordInKeywordField(allfields.KeyWordJoinOurTeam);
-            
-
-            _joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
-            _joinOurTeamPage.SelectCountryLocationByName(allfields.CountryLocationJoinOurTeam, allfields.CityLocationJoinOurTeam);
-
-            _joinOurTeamPage.OpenSkillsDropDownOnJoinOurTeamPage();
-            _joinOurTeamPage.SelectCheckBoxByName(allfields.SkillJoinOurTeam);
+            _joinOurTeamPage.FillInSearchFileds(inputWord: allfields.KeyWordJoinOurTeam, selectedCheckboxName: allfields.SkillJoinOurTeam, country: allfields.CountryLocationJoinOurTeam, city: allfields.CityLocationJoinOurTeam);
 
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
-            Waiters.WaitForCondition(() => _joinOurTeamPage.IsTitleDisplayed());
+            Waiters.WaitForPageLoad();
+
+            Waiters.WaitForCondition(() => !_joinOurTeamPage.IsSpinnerIsDisplayed());
+
             var actualTitleForResult = _joinOurTeamPage.GetTitleWithResult();
 
             var articlesContainsSearchWord = _joinOurTeamPage.IsResultHasSearchWord(allfields.KeyWordJoinOurTeam);
@@ -118,12 +112,7 @@ namespace Epam.TAF.Tests
         [TestCaseSource(nameof(GetMessageWithoutSearchResult))]
         public void CheckDisplayMessageIfResultNotFound(ValueForGetMessageModel messageEmptyResult)
         {
-            _joinOurTeamPage.ClickOnKeywordField();
-            _joinOurTeamPage.InsertSearchWordInKeywordField(messageEmptyResult.KeyWordJoinOurTeam);
-
-            _joinOurTeamPage.OpenLocationDropDownOnJoinOurTeamPage();
-            _joinOurTeamPage.SelectCountryLocationByName(messageEmptyResult.CountryLocationJoinOurTeam, messageEmptyResult.CityLocationJoinOurTeam);
-
+            _joinOurTeamPage.FillInSearchFileds(messageEmptyResult.KeyWordJoinOurTeam, messageEmptyResult.CountryLocationJoinOurTeam, messageEmptyResult.CityLocationJoinOurTeam);
             _joinOurTeamPage.ClickFindButtonOnJoinOurTeamPage();
 
             Waiters.WaitForCondition(() => _joinOurTeamPage.EmptyResultTitleDisplayed());
